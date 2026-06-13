@@ -109,3 +109,11 @@ nav a:hover{
     border-radius:10px;
     text-align:center;
 }
+
+.sale-banner{
+    background:#ff9900;
+    color:black;
+    text-align:center;
+    padding:10px;
+    font-weight:bold;
+}
