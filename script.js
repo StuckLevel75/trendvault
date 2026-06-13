@@ -1,10 +1,14 @@
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+updateCartCount();
 
 fetch("products.json")
 .then(response => response.json())
 .then(products => {
 
     const container = document.getElementById("products");
+
+    if (!container) return;
 
     products.forEach(product => {
 
@@ -13,7 +17,8 @@ fetch("products.json")
             <img src="${product.image}">
             <h3>${product.name}</h3>
             <p>$${product.price}</p>
-            <button onclick="addToCart('${product.name}')">
+
+            <button onclick="addToCart('${product.name}', ${product.price})">
                 Add To Cart
             </button>
         </div>
@@ -21,12 +26,26 @@ fetch("products.json")
     });
 });
 
-function addToCart(product){
+function addToCart(name, price){
 
-    cart.push(product);
+    cart.push({
+        name,
+        price
+    });
 
-    document.getElementById("cartCount").textContent =
-        cart.length;
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
 
-    alert(product + " added to cart!");
+    updateCartCount();
+}
+
+function updateCartCount(){
+
+    const count = document.getElementById("cartCount");
+
+    if(count){
+        count.textContent = cart.length;
+    }
 }
