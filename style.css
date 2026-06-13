@@ -48,3 +48,19 @@ button{
     cursor:pointer;
     border-radius:5px;
 }
+nav{
+    background:#1b1b1b;
+    padding:15px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#ff9900;
+}
